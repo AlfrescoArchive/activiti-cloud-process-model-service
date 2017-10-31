@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.activiti.cloud</groupId>
+        <artifactId>activiti-cloud-services-process-model</artifactId>
+        <version>7-201710-EA-cciobotaru_1521_process_model_rest_api-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>activiti-cloud-services-process-model-rest</artifactId>
+    <name>Activiti Cloud Services :: Process Model REST</name>
+    <description>Activiti Services Process Model REST</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.activiti.cloud</groupId>
+            <artifactId>activiti-cloud-services-process-model-jpa</artifactId>
+            <version>${version.activiti.cloud}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti.cloud</groupId>
+            <artifactId>activiti-cloud-services-process-model-core</artifactId>
+            <version>${version.activiti.cloud}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.hateoas</groupId>
+            <artifactId>spring-hateoas</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-rest-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
