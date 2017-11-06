@@ -39,24 +39,22 @@ public class ProcessModel {
 //
 //    private Version[] versions;
 
-    public ProcessModel(String id,
-                        String name/*,
-                        String[] labels,
-                        Version[] versions*/) {
-        this.id = id;
-        this.name = name;
-        //this.labels = labels;
-        //this.versions = versions;
-    }
-
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+    
 //    public String[] getLabels() {
 //        return labels;
 //    }

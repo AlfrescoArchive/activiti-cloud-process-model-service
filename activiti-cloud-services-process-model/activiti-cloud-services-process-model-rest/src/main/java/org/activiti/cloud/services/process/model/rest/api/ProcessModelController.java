@@ -14,15 +14,9 @@
  */
 package org.activiti.cloud.services.process.model.rest.api;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.hateoas.MediaTypes.HAL_JSON_VALUE;
 
-
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import org.activiti.cloud.services.process.model.rest.api.resources.ProcessModelResource;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -39,18 +33,4 @@ public interface ProcessModelController {
 
     static final String PROCESS_MODEL_ID_PARAM_NAME = "id";
 
-    /**
-     * Get a process model resource for a given id
-     * 
-     * @param id the process model id to retrieve
-     * @return the resource corresponding to given id
-     */
-    @ApiOperation("REST service to get a process model resource along with all its versions.")
-    @RequestMapping(method = GET, value = GET_PROCESS_MODEL_REQUEST_MAPPING)
-    ProcessModelResource getProcessModel(
-        @ApiParam(required = true, 
-                  name = PROCESS_MODEL_ID_PARAM_NAME, 
-                  value = "The id of the requested process model") 
-        @PathVariable(PROCESS_MODEL_ID_PARAM_NAME) 
-        String id);
 }
