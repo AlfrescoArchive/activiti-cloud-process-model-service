@@ -7,7 +7,7 @@ Represents a scenario when a process model is created.
 given:
     any client
 when:
-    he post a process model
+    post a process model
 then:
     the process model is created
 ```
@@ -19,8 +19,8 @@ then:
             header('Content-Type': 'application/json')
         }
         body(
-            id: "newProcesModelId",
-            name: "newProcesModelName"
+            modelId: anyNonEmptyString(),
+            name: anyNonEmptyString()
         )
     }
     response {

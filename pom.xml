@@ -4,14 +4,18 @@
   <parent>
     <groupId>org.activiti.cloud</groupId>
     <artifactId>activiti-cloud-parent</artifactId>
-    <version>7-201710-EA-SNAPSHOT</version>
+    <version>7-201712-EA-SNAPSHOT</version>
   </parent>
 
   <artifactId>activiti-cloud-process-model-service-parent</artifactId>
-  <version>7-201710-EA-cciobotaru_1521_process_model_rest_api-SNAPSHOT</version>
+  <version>7-201712-EA-cciobotaru_1521_process_model_rest_api-SNAPSHOT</version>
   <name>Activiti Cloud - Process Model Services :: Parent</name>
   <description>Activiti Cloud Process Model Services Parent</description>
   <packaging>pom</packaging>
+
+  <properties>
+    <version.activiti.cloud.process-model>${project.version}</version.activiti.cloud.process-model>
+  </properties>
 
   <modules>
     <module>activiti-cloud-services-process-model</module>
@@ -60,7 +64,6 @@
   </repositories>
 
   <!-- Various information, not used by the build -->
-
   <url>http://activiti.org</url>
   <licenses>
     <license>

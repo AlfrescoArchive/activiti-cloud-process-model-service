@@ -16,13 +16,12 @@
 
 package org.activiti.cloud.process.model;
 
-
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@EnableActivitiProcessModel
 @ComponentScan("org.activiti")
 public class ProcessModelApplication {
 

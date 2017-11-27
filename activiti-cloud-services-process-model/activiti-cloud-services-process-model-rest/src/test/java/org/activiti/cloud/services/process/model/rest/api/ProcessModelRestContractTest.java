@@ -15,7 +15,7 @@
 
 package org.activiti.cloud.services.process.model.rest.api;
 
-import com.jayway.restassured.module.mockmvc.RestAssuredMockMvc;
+import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.activiti.cloud.services.process.model.config.ProcessModelRestTestApplication;
 import org.activiti.cloud.services.process.model.core.model.ProcessModel;
 import org.activiti.cloud.services.process.model.jpa.ProcessModelRepository;
@@ -38,14 +38,24 @@ public abstract class ProcessModelRestContractTest {
 
     @Autowired
     private ProcessModelRepository processModelRepository;
-    
+
     @Before
     public void setup() {
         RestAssuredMockMvc.webAppContextSetup(context);
         
         ProcessModel processModel = new ProcessModel();
-        processModel.setId("testProcesModelId");
-        processModel.setName("testProcesModelName");
+        processModel.setModelId("contractNewProcesModelId");
+        processModel.setName("contractNewProcesModelName");
         processModelRepository.save(processModel);
+
+        ProcessModel processModelUpdate = new ProcessModel();
+        processModelUpdate.setModelId("contractUpdateProcesModelId");
+        processModelUpdate.setName("contractUpdateProcesModelName");
+        processModelUpdate.setContent("contractContentVersion001");
+        processModelRepository.save(processModelUpdate);
+
+        processModelUpdate.setName("contractUpdateProcesModelNameUpdated");
+        processModelUpdate.setContent("contractContentVersion002");
+        processModelRepository.save(processModelUpdate);
     }
 }

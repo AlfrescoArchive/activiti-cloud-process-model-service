@@ -14,21 +14,32 @@
  * limitations under the License.
  */
 
-package org.activiti.cloud.process.model;
+import org.springframework.cloud.contract.spec.Contract
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit4.SpringRunner;
-
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = ProcessModelApplication.class)
-@DirtiesContext
-public class ProcessModelApplicationTest {
-
-	@Test
-	public void contextLoads() throws Exception {
-	}
-
+Contract.make {
+    description("""
+Represents a scenario to update a process model.
+```
+given:
+    any client
+when:
+    updates a process model by process model id
+then:
+    the corresponding process model is updated
+```
+""")
+    request {
+        method 'PUT'
+        url "/v1/process-models/contractUpdateProcesModelId"
+        headers { 
+            header('Content-Type': 'application/json')
+        }
+        body(
+            name: anyNonEmptyString(),
+            content: anyNonEmptyString()
+        )
+    }
+    response {
+        status 204
+    }
 }

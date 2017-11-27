@@ -19,10 +19,10 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapt
 import org.springframework.stereotype.Component;
 
 /**
- * MVC configurer for handling Repository REST versions
+ * MVC configurer for handling Activiti REST repositories
  */
 @Component
-public class VersionedRepositoryRestMvcConfiguration extends RepositoryRestConfigurerAdapter {
+public class ActivitiRepositoryRestConfiguration extends RepositoryRestConfigurerAdapter {
 
     private static final String VERSION_PREFIX = "/v1";
 
@@ -33,5 +33,4 @@ public class VersionedRepositoryRestMvcConfiguration extends RepositoryRestConfi
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         config.setBasePath(VERSION_PREFIX);
     }
-
 }

@@ -14,16 +14,17 @@
  */
 package org.activiti.cloud.services.process.model.jpa;
 
-import org.activiti.cloud.services.process.model.core.model.ProcessModel;
 import org.activiti.cloud.services.process.model.core.model.ProcessModelVersion;
-import org.activiti.cloud.services.process.model.jpa.version.VersionedJpaRepository;
+import org.activiti.cloud.services.process.model.core.version.VersionIdentifier;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
- * JPA Repository for {link @ProcessModel} entity
+ * JPA Repository for {link @ProcessModelVersion) entity
  */
-@RepositoryRestResource(path = "process-models",
-                        collectionResourceRel = "process-models",
-                        itemResourceRel = "process-models")
-public interface ProcessModelRepository extends VersionedJpaRepository<ProcessModel, String, ProcessModelVersion> {
+@RepositoryRestResource(path = "versions",
+                        collectionResourceRel = "versions",
+                        itemResourceRel = "versions")
+public interface ProcessModelVersionRepository extends JpaRepository<ProcessModelVersion, VersionIdentifier> {
+
 }

@@ -14,27 +14,29 @@
  * limitations under the License.
  */
 
-package org.activiti.cloud.services.process.model.config;
+package org.activiti.cloud.process.model;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 import org.activiti.cloud.services.process.model.jpa.version.ExtendedJpaRepositoryFactoryBean;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
 @EnableAutoConfiguration
 @ComponentScan("org.activiti")
 @EnableJpaRepositories(
-		basePackages = {"org.activiti.cloud.services.process.model.jpa"},
-		repositoryFactoryBeanClass = ExtendedJpaRepositoryFactoryBean.class)
+        basePackages = {"org.activiti.cloud.services.process.model.jpa"},
+        repositoryFactoryBeanClass = ExtendedJpaRepositoryFactoryBean.class)
 @EntityScan("org.activiti.cloud.services.process.model.core.model")
-public class ProcessModelRestTestApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(ProcessModelRestTestApplication.class, args);
-	}
+@Inherited
+public @interface EnableActivitiProcessModel {
 
 }
