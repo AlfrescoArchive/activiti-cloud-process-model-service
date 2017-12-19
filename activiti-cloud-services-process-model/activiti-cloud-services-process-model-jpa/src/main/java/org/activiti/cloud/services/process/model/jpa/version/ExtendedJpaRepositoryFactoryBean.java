@@ -33,11 +33,11 @@ import org.springframework.data.repository.core.support.RepositoryFactorySupport
  *
  * @param <R> the repository type
  * @param <T> The entity type
- * @param <ID> the entity id type
+ * @param <K> the entity id type
  * @param <V> the entity version type
  */
-public class ExtendedJpaRepositoryFactoryBean<R extends JpaRepository<T, ID>, T, ID extends Serializable, V extends VersionEntity>
-        extends JpaRepositoryFactoryBean<R, T, ID> {
+public class ExtendedJpaRepositoryFactoryBean<R extends JpaRepository<T, K>, T, K extends Serializable, V extends VersionEntity>
+        extends JpaRepositoryFactoryBean<R, T, K> {
 
     /**
      * Creates a new {@link JpaRepositoryFactoryBean} for the given repository interface.

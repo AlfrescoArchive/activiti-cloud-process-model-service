@@ -32,9 +32,9 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Implementation for {@link VersionedJpaRepository}
  */
-public class VersionedJpaRepositoryImpl<T extends VersionedEntity, ID extends Serializable, V extends VersionEntity>
-        extends SimpleJpaRepository<T, ID>
-        implements VersionedJpaRepository<T, ID, V> {
+public class VersionedJpaRepositoryImpl<T extends VersionedEntity, K extends Serializable, V extends VersionEntity>
+        extends SimpleJpaRepository<T, K>
+        implements VersionedJpaRepository<T, K, V> {
 
     private Class<T> versionedClass;
 

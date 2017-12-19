@@ -16,8 +16,6 @@
 
 package org.activiti.cloud.process.model.rest;
 
-import com.jayway.jsonpath.DocumentContext;
-import com.jayway.jsonpath.JsonPath;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.activiti.cloud.process.model.ProcessModelApplication;
 import org.activiti.cloud.services.process.model.core.model.ProcessModel;
@@ -30,11 +28,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.hamcrest.Matchers.equalTo;
-import static com.toomuchcoding.jsonassert.JsonAssertion.assertThatJson;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
-import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -48,7 +43,7 @@ public class ProcessModelVersionRestIT {
     private ProcessModelRepository processModelRepository;
 
     @Before
-    public void setup() {
+    public void setUp() {
         RestAssuredMockMvc.webAppContextSetup(context);
     }
 
@@ -62,9 +57,9 @@ public class ProcessModelVersionRestIT {
         given()
                 .get("/v1/process-models/11")
                 .then().expect(status().isOk())
-                .and().body("name", equalTo("Process 11"));
+                .and().body("name",
+                            equalTo("Process 11"));
     }
-
 
     @Test
     public void testUpdateProcessModel() throws Exception {
@@ -82,27 +77,37 @@ public class ProcessModelVersionRestIT {
         given()
                 .get("/v1/process-models/22")
                 .then().expect(status().isOk())
-                .and().body("name", equalTo("Process 22_2"))
-                .and().body("content", equalTo("ContentVersion002"))
-                .and().body("version", equalTo("0.0.2"));
+                .and().body("name",
+                            equalTo("Process 22_2"))
+                .and().body("content",
+                            equalTo("ContentVersion002"))
+                .and().body("version",
+                            equalTo("0.0.2"));
 
         given()
                 .get("/v1/process-models/22/versions")
                 .then().expect(status().isOk())
-                .and().body("_embedded.versions.size()", equalTo(2));
+                .and().body("_embedded.versions.size()",
+                            equalTo(2));
 
         given()
                 .get("/v1/process-models/22/versions/0.0.1/")
                 .then().expect(status().isOk())
-                .and().body("name", equalTo("Process 22"))
-                .and().body("content", equalTo("ContentVersion001"))
-                .and().body("version", equalTo("0.0.1"));
+                .and().body("name",
+                            equalTo("Process 22"))
+                .and().body("content",
+                            equalTo("ContentVersion001"))
+                .and().body("version",
+                            equalTo("0.0.1"));
 
         given()
                 .get("/v1/process-models/22/versions/0.0.2/")
                 .then().expect(status().isOk())
-                .and().body("name", equalTo("Process 22_2"))
-                .and().body("content", equalTo("ContentVersion002"))
-                .and().body("version", equalTo("0.0.2"));
+                .and().body("name",
+                            equalTo("Process 22_2"))
+                .and().body("content",
+                            equalTo("ContentVersion002"))
+                .and().body("version",
+                            equalTo("0.0.2"));
     }
 }
