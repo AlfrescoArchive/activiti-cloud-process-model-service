@@ -14,19 +14,27 @@
  * limitations under the License.
  */
 
-package org.activiti.cloud.process.model;
+package org.activiti.cloud.services.process.model.config;
 
+import org.activiti.cloud.services.process.model.jpa.version.ExtendedJpaRepositoryFactoryBean;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableActivitiProcessModel
+@EnableAutoConfiguration
 @ComponentScan("org.activiti")
-public class ProcessModelApplication {
+@EnableJpaRepositories(
+		basePackages = {"org.activiti.cloud.services.process.model.jpa"},
+		repositoryFactoryBeanClass = ExtendedJpaRepositoryFactoryBean.class)
+@EntityScan("org.activiti.cloud.services.process.model.core.model")
+public class ProcessModelRestTestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProcessModelApplication.class, args);
+		SpringApplication.run(ProcessModelRestTestApplication.class, args);
 	}
 
 }

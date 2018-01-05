@@ -13,22 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.activiti.cloud.services.process.model.core.version;
 
-package org.activiti.cloud.process.model;
+import java.util.Optional;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit4.SpringRunner;
+/**
+ * Interface for a version generation strategy
+ */
+public interface VersionGenerationStrategy {
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = ProcessModelApplication.class)
-@DirtiesContext
-public class ProcessModelApplicationTest {
-
-	@Test
-	public void contextLoads() throws Exception {
-	}
-
+    /**
+     * Generate the next version relative to the given version.
+     *
+     * @param version the version to increment
+     * @return the generated version
+     */
+    String generateNextVersion(Optional<String> version);
 }

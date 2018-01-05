@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-package org.activiti.cloud.process.model;
+package org.activiti.cloud.services.process.model.jpa.version;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.activiti.cloud.services.process.model.core.version.VersionEntity;
+import org.activiti.cloud.services.process.model.core.version.VersionedEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = ProcessModelApplication.class)
-@DirtiesContext
-public class ProcessModelApplicationTest {
-
-	@Test
-	public void contextLoads() throws Exception {
-	}
+/**
+ * Custom JPA Repository for version entities
+ */
+@NoRepositoryBean
+public interface VersionedJpaRepository<T extends VersionedEntity, K, V extends VersionEntity>
+        extends JpaRepository<T, K> {
 
 }

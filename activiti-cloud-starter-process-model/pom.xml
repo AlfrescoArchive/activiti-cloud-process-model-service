@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.activiti.cloud</groupId>
     <artifactId>activiti-cloud-process-model-service-parent</artifactId>
-    <version>7-201710-EA-SNAPSHOT</version>
+    <version>7-201712-EA-SNAPSHOT</version>
   </parent>
 
   <artifactId>activiti-cloud-starter-process-model</artifactId>
@@ -12,27 +12,27 @@
   <dependencies>
     <dependency>
       <groupId>org.activiti.cloud</groupId>
-      <artifactId>activiti-cloud-services-identity-keycloak</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+      <artifactId>activiti-cloud-services-process-model-jpa</artifactId>
     </dependency>
     <dependency>
       <groupId>org.activiti.cloud</groupId>
-      <artifactId>activiti-cloud-services-core-model</artifactId>
+      <artifactId>activiti-cloud-services-process-model-rest</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-stream</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.activiti.cloud</groupId>
-      <artifactId>activiti-cloud-services-api</artifactId>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -90,7 +90,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
 
-      <!--exclude tomcat and use embedded jetty, see root pom-->
+      <!--exclude tomcat and use embedded jetty, see root pom -->
       <exclusions>
         <exclusion>
           <groupId>org.springframework.boot</groupId>
@@ -126,6 +126,18 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-rest</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <scope>test</scope>
@@ -151,18 +163,13 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.activiti.cloud</groupId>
-      <artifactId>activiti-cloud-services-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.activiti.cloud</groupId>
-      <artifactId>activiti-cloud-starter-test</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-contract-verifier</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -175,71 +182,27 @@
       <plugin>
         <groupId>io.fabric8</groupId>
         <artifactId>docker-maven-plugin</artifactId>
-        <version>${maven.docker.plugin.version}</version>
         <configuration>
           <images>
-            <!-- A single's image configuration -->
             <image>
-              <name>activiti/activiti-cloud-sso-idm</name>
-              <alias>activiti-cloud-sso-idm</alias>
-              <run>
-                <ports>
-                  <port>8180:8180</port>
-                </ports>
-                <wait>
-                  <log>Keycloak .* started in</log>
-                  <time>40000</time>
-                </wait>
-              </run>
+              <name>activiti/activiti-cloud-process-model</name>
+              <alias>activiti-cloud-process-model</alias>
+              <build>
+                <from>openjdk:alpine</from>
+                <assembly>
+                  <descriptorRef>artifact</descriptorRef>
+                </assembly>
+                <cmd>java -jar maven/${project.artifactId}-${project.version}.jar</cmd>
+              </build>
             </image>
-            <image>
-              <name>rabbitmq:management</name>
-              <alias>activiti-rabbitmq</alias>
-              <run>
-                <ports>
-                  <port>5672:5672</port>
-                  <port>15672:15672</port>
-                </ports>
-                <wait>
-                  <log>Server startup complete</log>
-                  <time>15000</time>
-                </wait>
-              </run>
-            </image>
-
           </images>
         </configuration>
-
-        <!-- Connect start/stop to pre- and
-             post-integration-test phase, respectively if you want to start
-             your docker containers during integration tests -->
         <executions>
           <execution>
-            <id>build</id>
-            <phase>package</phase>
+            <id>docker:build</id>
+            <phase>install</phase>
             <goals>
               <goal>build</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>start</id>
-            <configuration>
-              <skip>${skipTests}</skip>
-            </configuration>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>start</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>stop</id>
-            <configuration>
-              <skip>${skipTests}</skip>
-            </configuration>
-            <phase>post-integration-test</phase>
-            <goals>
-              <goal>stop</goal>
-              <goal>remove</goal>
             </goals>
           </execution>
         </executions>

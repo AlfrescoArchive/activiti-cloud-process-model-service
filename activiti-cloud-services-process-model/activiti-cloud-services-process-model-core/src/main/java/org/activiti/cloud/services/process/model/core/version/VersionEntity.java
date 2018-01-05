@@ -14,21 +14,16 @@
  * limitations under the License.
  */
 
-package org.activiti.cloud.process.model;
+package org.activiti.cloud.services.process.model.core.version;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit4.SpringRunner;
+/**
+ * Interface for version entity
+ */
+public interface VersionEntity<T extends VersionedEntity> {
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = ProcessModelApplication.class)
-@DirtiesContext
-public class ProcessModelApplicationTest {
+    void setVersionIdentifier(VersionIdentifier versionIdentifier);
 
-	@Test
-	public void contextLoads() throws Exception {
-	}
+    void setVersionedEntity(T versionedEntity);
 
+    String getVersion();
 }
