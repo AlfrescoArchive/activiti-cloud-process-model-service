@@ -16,24 +16,31 @@
 
 package org.activiti.cloud.process.model;
 
+import static com.google.common.base.Predicates.or;
+import static springfox.documentation.builders.PathSelectors.regex;
+import static org.activiti.cloud.services.process.model.rest.config.ActivitiRepositoryRestConfiguration.VERSION_PREFIX;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
+import org.springframework.context.annotation.Import;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.data.rest.CustomSpringDataRestConfiguration;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
+@Import(CustomSpringDataRestConfiguration.class)
 public class SwaggerConfig {
 
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("org.activiti.cloud.services.process.model"))
-                .paths(PathSelectors.any())
+                .paths(or(
+                        regex(VERSION_PREFIX + "/process-models(/\\{id\\})?$"),
+                        regex(VERSION_PREFIX + "/process-models/.*/versions($|/.*)")))
                 .build();
     }
+
 }

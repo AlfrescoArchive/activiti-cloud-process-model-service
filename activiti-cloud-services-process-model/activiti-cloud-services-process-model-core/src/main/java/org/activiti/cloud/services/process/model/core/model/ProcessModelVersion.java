@@ -37,6 +37,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 public class ProcessModelVersion extends AuditableEntity<String> implements VersionEntity<ProcessModel> {
 
     @EmbeddedId
+    @JsonIgnore
     private VersionIdentifier versionIdentifier;
 
     @JsonIgnore

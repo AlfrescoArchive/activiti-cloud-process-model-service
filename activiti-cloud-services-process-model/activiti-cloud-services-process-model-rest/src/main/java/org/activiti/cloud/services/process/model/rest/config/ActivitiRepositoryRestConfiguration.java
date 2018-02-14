@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ActivitiRepositoryRestConfiguration extends RepositoryRestConfigurerAdapter {
 
-    private static final String VERSION_PREFIX = "/v1";
+    public static final String VERSION_PREFIX = "/v1";
 
     /* (non-Javadoc)
      * @see org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter#configureRepositoryRestConfiguration(org.springframework.data.rest.core.config.RepositoryRestConfiguration)
