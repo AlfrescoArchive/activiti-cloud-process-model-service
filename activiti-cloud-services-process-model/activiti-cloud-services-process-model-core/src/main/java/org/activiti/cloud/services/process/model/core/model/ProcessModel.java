@@ -78,6 +78,7 @@ public class ProcessModel implements VersionedEntity<ProcessModelVersion> {
         this.content = content;
     }
 
+    @JsonIgnore
     public void setVersions(List<ProcessModelVersion> versions) {
         this.versions = versions;
     }
@@ -88,6 +89,7 @@ public class ProcessModel implements VersionedEntity<ProcessModelVersion> {
     }
 
     @Override
+    @JsonIgnore
     public void setLatestVersion(ProcessModelVersion latestVersion) {
         this.latestVersion = latestVersion;
     }
