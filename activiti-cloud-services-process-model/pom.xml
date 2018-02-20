@@ -17,6 +17,7 @@
     <module>activiti-cloud-services-process-model-core</module>
     <module>activiti-cloud-services-process-model-rest</module>
     <module>activiti-cloud-services-process-model-jpa</module>
+    <module>activiti-cloud-services-process-model-services</module>
   </modules>
 
 </project>
