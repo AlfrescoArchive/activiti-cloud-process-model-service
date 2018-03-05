@@ -29,7 +29,7 @@ import javax.xml.stream.XMLStreamException;
 
 import org.activiti.cloud.services.process.model.config.ProcessModelRestTestApplication;
 import org.activiti.cloud.services.process.model.rest.controllers.ProcessModelValidationController;
-import org.activiti.cloud.services.process.model.rest.resources.ValidationErrorResource;
+import org.activiti.cloud.services.process.model.services.validate.ValidationErrorRepresentation;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.io.IOUtils;
@@ -54,7 +54,7 @@ public class ProcessModelValidationIT {
     public void validateSimpleProcessIsNotExecutable() throws URISyntaxException, IOException, XMLStreamException {
         MultipartFile multipartFile = new CommonsMultipartFile(loadFile("bpmn/diagram.bpmn"));
 
-        final List<ValidationErrorResource> validationErrors = processModelValidationController.validateBPMNmodel(multipartFile);
+        final List<ValidationErrorRepresentation> validationErrors = processModelValidationController.validateBPMNmodel(multipartFile);
         assertThat(validationErrors).isNotEmpty().hasSize(1);
     }
 

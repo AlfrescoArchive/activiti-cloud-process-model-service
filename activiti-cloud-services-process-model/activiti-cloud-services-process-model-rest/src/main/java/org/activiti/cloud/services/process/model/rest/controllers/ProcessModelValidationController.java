@@ -20,10 +20,9 @@ import java.io.IOException;
 import java.util.List;
 import javax.xml.stream.XMLStreamException;
 
-import org.activiti.cloud.services.process.model.rest.assemblers.ValidationErrorResourceAssembler;
 import org.activiti.cloud.services.process.model.rest.config.ActivitiRepositoryRestConfiguration;
-import org.activiti.cloud.services.process.model.rest.resources.ValidationErrorResource;
 import org.activiti.cloud.services.process.model.services.validate.ProcessModelValidatorService;
+import org.activiti.cloud.services.process.model.services.validate.ValidationErrorRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,18 +35,14 @@ public class ProcessModelValidationController {
 
     private final ProcessModelValidatorService validatorService;
 
-    private final ValidationErrorResourceAssembler validationErrorResourceAssembler;
 
     @Autowired
-
-    public ProcessModelValidationController(ProcessModelValidatorService validatorService,
-                                            ValidationErrorResourceAssembler validationErrorResourceAssembler) {
+    public ProcessModelValidationController(ProcessModelValidatorService validatorService) {
         this.validatorService = validatorService;
-        this.validationErrorResourceAssembler = validationErrorResourceAssembler;
     }
 
     @RequestMapping(value = ActivitiRepositoryRestConfiguration.VERSION_PREFIX + "/models/validate", method = RequestMethod.POST, produces = "application/json")
-    public List<ValidationErrorResource> validateBPMNmodel(@RequestParam("file") MultipartFile file) throws IOException, XMLStreamException {
-        return validationErrorResourceAssembler.toResources(validatorService.validate(file));
+    public List<ValidationErrorRepresentation> validateBPMNmodel(@RequestParam("file") MultipartFile file) throws IOException, XMLStreamException {
+        return validatorService.validate(file);
     }
 }
