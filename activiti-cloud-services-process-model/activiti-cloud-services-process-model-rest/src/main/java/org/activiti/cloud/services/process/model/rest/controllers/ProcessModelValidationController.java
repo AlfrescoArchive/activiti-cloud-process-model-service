@@ -30,18 +30,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import static org.activiti.cloud.services.process.model.rest.config.ActivitiRepositoryRestConfiguration.VERSION_PREFIX;
+
 @RestController
 public class ProcessModelValidationController {
 
     private final ProcessModelValidatorService validatorService;
-
 
     @Autowired
     public ProcessModelValidationController(ProcessModelValidatorService validatorService) {
         this.validatorService = validatorService;
     }
 
-    @RequestMapping(value = ActivitiRepositoryRestConfiguration.VERSION_PREFIX + "/models/validate", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = VERSION_PREFIX + "/process-models/validate",
+            method = RequestMethod.POST,
+            produces = "application/json")
     public List<ValidationErrorRepresentation> validateBPMNmodel(@RequestParam("file") MultipartFile file) throws IOException, XMLStreamException {
         return validatorService.validate(file);
     }
