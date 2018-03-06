@@ -9,6 +9,9 @@
   </parent>
   <artifactId>activiti-cloud-starter-process-model</artifactId>
   <name>Activiti Cloud Starter :: Process Model</name>
+  <properties>
+    <docker.build>true</docker.build>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>org.activiti.cloud</groupId>
@@ -161,34 +164,6 @@
   </dependencies>
   <build>
     <plugins>
-      <plugin>
-        <groupId>io.fabric8</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-        <configuration>
-          <images>
-            <image>
-              <name>activiti/activiti-cloud-process-model</name>
-              <alias>activiti-cloud-process-model</alias>
-              <build>
-                <from>openjdk:alpine</from>
-                <assembly>
-                  <descriptorRef>artifact</descriptorRef>
-                </assembly>
-                <cmd>java -jar maven/${project.artifactId}-${project.version}.jar</cmd>
-              </build>
-            </image>
-          </images>
-        </configuration>
-        <executions>
-          <execution>
-            <id>docker:build</id>
-            <phase>install</phase>
-            <goals>
-              <goal>build</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
