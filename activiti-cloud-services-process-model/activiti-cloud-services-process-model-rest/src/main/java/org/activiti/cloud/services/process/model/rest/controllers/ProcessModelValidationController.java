@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.util.List;
 import javax.xml.stream.XMLStreamException;
 
-import org.activiti.cloud.services.process.model.rest.config.ActivitiRepositoryRestConfiguration;
 import org.activiti.cloud.services.process.model.services.validate.ProcessModelValidatorService;
 import org.activiti.cloud.services.process.model.services.validate.ValidationErrorRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
