@@ -26,7 +26,6 @@ import javax.xml.stream.XMLStreamReader;
 
 import org.activiti.bpmn.converter.BpmnXMLConverter;
 import org.activiti.bpmn.model.BpmnModel;
-import org.activiti.cloud.services.process.model.jpa.ProcessModelRepository;
 import org.activiti.validation.ProcessValidatorImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -41,7 +40,6 @@ public class ProcessModelValidatorService {
     private final BpmnXMLConverter bpmnXmlConverter;
 
     public ProcessModelValidatorService(ProcessValidatorImpl processValidator,
-                                        ProcessModelRepository processModelRepository,
                                         BpmnXMLConverter bpmnXmlConverter) {
         this.processValidator = processValidator;
         this.bpmnXmlConverter = bpmnXmlConverter;
