@@ -23,13 +23,14 @@ import javax.xml.stream.XMLStreamException;
 import org.activiti.cloud.services.process.model.services.validate.ProcessModelValidatorService;
 import org.activiti.cloud.services.process.model.services.validate.ValidationErrorRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import static org.activiti.cloud.services.process.model.rest.config.ActivitiRepositoryRestConfiguration.VERSION_PREFIX;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.MediaType.APPLICATION_OCTET_STREAM_VALUE;
 
 @RestController
 public class ProcessModelValidationController {
@@ -43,8 +44,9 @@ public class ProcessModelValidationController {
 
     @RequestMapping(value = VERSION_PREFIX + "/process-models/validate",
             method = RequestMethod.POST,
-            produces = "application/json")
-    public List<ValidationErrorRepresentation> validateBPMNmodel(@RequestParam("file") MultipartFile file) throws IOException, XMLStreamException {
+            consumes = APPLICATION_OCTET_STREAM_VALUE,
+            produces = APPLICATION_JSON_VALUE)
+    public List<ValidationErrorRepresentation> validateBPMNmodel(@RequestBody byte[] file) throws IOException, XMLStreamException {
         return validatorService.validate(file);
     }
 }

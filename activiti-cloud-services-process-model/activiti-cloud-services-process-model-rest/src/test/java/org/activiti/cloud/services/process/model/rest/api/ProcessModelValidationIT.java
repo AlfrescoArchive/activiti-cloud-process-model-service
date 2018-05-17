@@ -20,7 +20,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -38,8 +37,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -52,13 +49,13 @@ public class ProcessModelValidationIT {
 
     @Test
     public void validateSimpleProcessIsNotExecutable() throws URISyntaxException, IOException, XMLStreamException {
-        MultipartFile multipartFile = new CommonsMultipartFile(loadFile("bpmn/diagram.bpmn"));
+        byte[] file = loadFile("bpmn/diagram.bpmn");
 
-        final List<ValidationErrorRepresentation> validationErrors = processModelValidationController.validateBPMNmodel(multipartFile);
+        final List<ValidationErrorRepresentation> validationErrors = processModelValidationController.validateBPMNmodel(file);
         assertThat(validationErrors).isNotEmpty().hasSize(1);
     }
 
-    private FileItem loadFile(String fileToImport) throws URISyntaxException, IOException {
+    private byte[] loadFile(String fileToImport) throws URISyntaxException, IOException {
         URL resource = this.getClass().getClassLoader().getResource(fileToImport);
         assertThat(resource).isNotNull();
 
@@ -70,10 +67,8 @@ public class ProcessModelValidationIT {
                                              (int) file.length(),
                                              file.getParentFile());
 
-        InputStream input = new FileInputStream(file);
-        OutputStream os = fileItem.getOutputStream();
-        IOUtils.copy(input,
-                     os);
-        return fileItem;
+        try (InputStream input = new FileInputStream(file)) {
+            return IOUtils.toByteArray(input);
+        }
     }
 }
