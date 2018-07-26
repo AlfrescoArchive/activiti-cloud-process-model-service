@@ -14,8 +14,10 @@
  */
 package org.activiti.cloud.services.process.model.core.model;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
@@ -45,6 +47,10 @@ public class ProcessModelVersion extends AuditableEntity<String> implements Vers
 
     private String name;
 
+    private String contentType;
+
+    @Lob
+    @Column
     private String content;
 
     public VersionIdentifier getVersionIdentifier() {
@@ -63,6 +69,14 @@ public class ProcessModelVersion extends AuditableEntity<String> implements Vers
     @Override
     public void setVersionedEntity(ProcessModel versionedEntity) {
         this.versionedEntity = versionedEntity;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
     public String getContent() {

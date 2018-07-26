@@ -52,6 +52,9 @@ public class ProcessModel implements VersionedEntity<ProcessModelVersion> {
     private String name;
 
     @Transient
+    private String contentType;
+
+    @Transient
     private String content;
 
     public String getModelId() {
@@ -68,6 +71,14 @@ public class ProcessModel implements VersionedEntity<ProcessModelVersion> {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
     public String getContent() {
@@ -112,6 +123,7 @@ public class ProcessModel implements VersionedEntity<ProcessModelVersion> {
     @Override
     public void fillVersionContent(ProcessModelVersion processModelVersion) {
         processModelVersion.setName(getName());
+        processModelVersion.setContentType(getContentType());
         processModelVersion.setContent(getContent());
     }
 }
