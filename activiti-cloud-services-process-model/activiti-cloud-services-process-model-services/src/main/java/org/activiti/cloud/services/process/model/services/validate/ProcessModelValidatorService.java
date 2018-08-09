@@ -16,6 +16,7 @@
 
 package org.activiti.cloud.services.process.model.services.validate;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -29,7 +30,6 @@ import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.validation.ProcessValidatorImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 import static org.activiti.bpmn.converter.util.BpmnXMLUtil.createSafeXmlInputFactory;
 
@@ -45,25 +45,23 @@ public class ProcessModelValidatorService {
         this.bpmnXmlConverter = bpmnXmlConverter;
     }
 
-    public List<ValidationErrorRepresentation> validate(MultipartFile file) throws XMLStreamException, IOException {
+    public List<ValidationErrorRepresentation> validate(byte[] file) throws XMLStreamException, IOException {
 
-        String fileName = file.getOriginalFilename();
-        BpmnModel bpmnModel = null;
-        if (fileName != null && (fileName.endsWith(".bpmn") || fileName.endsWith(".bpmn20.xml"))) {
+        try (InputStreamReader xmlIn = new InputStreamReader(new ByteArrayInputStream(file),
+                                                             "UTF-8")) {
             XMLInputFactory xif = createSafeXmlInputFactory();
-            InputStreamReader xmlIn = new InputStreamReader(file.getInputStream(),
-                                                            "UTF-8");
             XMLStreamReader xtr = xif.createXMLStreamReader(xmlIn);
-            bpmnModel = bpmnXmlConverter.convertToBpmnModel(xtr);
-            if (CollectionUtils.isEmpty(bpmnModel.getProcesses())) {
-                throw new RuntimeException("No process found in definition " + fileName);
-            }
-        }
+            BpmnModel bpmnModel = bpmnXmlConverter.convertToBpmnModel(xtr);
 
-        return processValidator
-                .validate(bpmnModel)
-                .stream()
-                .map(ValidationErrorRepresentation::new)
-                .collect(Collectors.toList());
+            if (CollectionUtils.isEmpty(bpmnModel.getProcesses())) {
+                throw new IllegalStateException("No process found for validation.");
+            }
+
+            return processValidator
+                    .validate(bpmnModel)
+                    .stream()
+                    .map(ValidationErrorRepresentation::new)
+                    .collect(Collectors.toList());
+        }
     }
 }
