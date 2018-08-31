@@ -22,8 +22,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableActivitiProcessModel
-@ComponentScan({"org.activiti.cloud.starters.test",
-		"org.activiti.cloud.services.test.identity.keycloak.interceptor"})
 public class ProcessModelApplication {
 
 	public static void main(String[] args) {
