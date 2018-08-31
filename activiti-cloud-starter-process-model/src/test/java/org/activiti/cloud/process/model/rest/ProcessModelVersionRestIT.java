@@ -20,6 +20,7 @@ import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.activiti.cloud.process.model.ProcessModelApplication;
 import org.activiti.cloud.services.process.model.core.model.ProcessModel;
 import org.activiti.cloud.services.process.model.jpa.ProcessModelRepository;
+import org.activiti.cloud.services.test.identity.keycloak.interceptor.KeycloakTokenProducer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
