@@ -32,7 +32,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @EnableAutoConfiguration
-@ComponentScan({"org.activiti.cloud.services.process.model", "org.activiti.cloud.services.process.model.rest"})
+@ComponentScan({"org.activiti.cloud.services.process.model"})
 @EnableJpaRepositories(
         basePackages = {"org.activiti.cloud.services.process.model.jpa"},
         repositoryFactoryBeanClass = ExtendedJpaRepositoryFactoryBean.class)
