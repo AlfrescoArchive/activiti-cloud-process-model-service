@@ -14,6 +14,7 @@
  */
 package org.activiti.cloud.services.process.model.rest.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 import org.springframework.stereotype.Component;
@@ -21,8 +22,8 @@ import org.springframework.stereotype.Component;
 /**
  * MVC configurer for handling Activiti REST repositories
  */
-@Component
-public class ActivitiRepositoryRestConfiguration extends RepositoryRestConfigurerAdapter {
+@Configuration
+public class RestRepositoryAutoConfiguration extends RepositoryRestConfigurerAdapter {
 
     public static final String VERSION_PREFIX = "/v1";
 

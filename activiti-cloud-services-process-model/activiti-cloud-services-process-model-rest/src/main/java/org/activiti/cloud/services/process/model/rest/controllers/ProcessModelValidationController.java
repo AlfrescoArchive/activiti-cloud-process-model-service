@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import static org.activiti.cloud.services.process.model.rest.config.ActivitiRepositoryRestConfiguration.VERSION_PREFIX;
+import static org.activiti.cloud.services.process.model.rest.config.RestRepositoryAutoConfiguration.VERSION_PREFIX;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_OCTET_STREAM_VALUE;
 
