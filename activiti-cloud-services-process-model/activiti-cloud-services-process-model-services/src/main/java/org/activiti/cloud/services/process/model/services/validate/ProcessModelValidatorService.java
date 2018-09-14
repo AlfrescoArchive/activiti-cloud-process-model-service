@@ -28,12 +28,14 @@ import javax.xml.stream.XMLStreamReader;
 import org.activiti.bpmn.converter.BpmnXMLConverter;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.validation.ProcessValidatorImpl;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import static org.activiti.bpmn.converter.util.BpmnXMLUtil.createSafeXmlInputFactory;
 
 @Component
+@PreAuthorize("hasRole('ACTIVITI_MODELER')")
 public class ProcessModelValidatorService {
 
     private final ProcessValidatorImpl processValidator;

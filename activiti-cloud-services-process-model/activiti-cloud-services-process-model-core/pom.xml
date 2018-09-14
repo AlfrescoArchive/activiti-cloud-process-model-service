@@ -11,6 +11,14 @@
   <name>Activiti Cloud Services :: Process Model Core</name>
   <dependencies>
     <dependency>
+      <groupId>org.activiti.api</groupId>
+      <artifactId>activiti-api-runtime-shared</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.activiti.cloud</groupId>
+      <artifactId>activiti-cloud-services-common-security-keycloak</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
     </dependency>
