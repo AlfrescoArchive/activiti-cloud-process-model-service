@@ -5,7 +5,7 @@
 
 
   <parent>
-    <groupId>org.activiti.cloud</groupId>
+    <groupId>org.activiti.cloud.process.model</groupId>
     <artifactId>activiti-cloud-services-process-model</artifactId>
     <version>7.0.0-SNAPSHOT</version>
   </parent>
@@ -29,11 +29,11 @@
       <artifactId>spring-data-rest-core</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.activiti.cloud</groupId>
+      <groupId>org.activiti.cloud.process.model</groupId>
       <artifactId>activiti-cloud-services-process-model-jpa</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.activiti.cloud</groupId>
+      <groupId>org.activiti.cloud.process.model</groupId>
       <artifactId>activiti-cloud-services-process-model-core</artifactId>
     </dependency>
     <dependency>
