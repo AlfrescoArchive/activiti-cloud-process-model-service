@@ -10,6 +10,7 @@
   </parent>
   <groupId>org.activiti.cloud.process.model</groupId>
   <artifactId>activiti-cloud-process-model-service-parent</artifactId>
+  <version>7.0.0-SNAPSHOT</version>
   <name>Activiti Cloud :: Process Model Service Parent</name>
   <packaging>pom</packaging>
   <url>http://activiti.org</url>
@@ -38,6 +39,10 @@
       </releases>
     </repository>
   </repositories>
+  <properties>
+    <activiti-cloud-service-common.version>7.0.1</activiti-cloud-service-common.version>
+    <activiti-cloud-process-model.version>${project.version}</activiti-cloud-process-model.version>
+  </properties>
   <dependencyManagement>
     <!-- This duplicates activiti-cloud-api-dependencies module but we can't import that module here as this is its parent
        and we want to keep a standard Maven structure -->
