@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.activiti.cloud.build</groupId>
     <artifactId>activiti-cloud-parent</artifactId>
-    <version>7.0.31</version>
+    <version>7.0.33</version>
     <relativePath/>
   </parent>
   <groupId>org.activiti.cloud.process.model</groupId>
@@ -40,14 +40,25 @@
     </repository>
   </repositories>
   <properties>
-    <activiti-cloud-build.version>7.0.31</activiti-cloud-build.version>
-    <activiti-cloud-service-common.version>7.0.28</activiti-cloud-service-common.version>
+    <activiti-dependencies.version>7.0.46</activiti-dependencies.version>
+    <activiti-cloud-build.version>7.0.33</activiti-cloud-build.version>
+    <activiti-cloud-service-common.version>7.0.29</activiti-cloud-service-common.version>
     <activiti-cloud-process-model-service.version>${project.version}</activiti-cloud-process-model-service.version>
+    <json-unit.version>1.24.0</json-unit.version>
+    <commons-io.version>2.6</commons-io.version>
+    <commons-fileupload.version>1.3.3</commons-fileupload.version>
   </properties>
   <dependencyManagement>
     <!-- This duplicates activiti-cloud-api-dependencies module but we can't import that module here as this is its parent
        and we want to keep a standard Maven structure -->
     <dependencies>
+      <dependency>
+        <groupId>org.activiti.dependencies</groupId>
+        <artifactId>activiti-dependencies</artifactId>
+        <version>${activiti-dependencies.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <dependency>
         <groupId>org.activiti.cloud.build</groupId>
         <artifactId>activiti-cloud-dependencies-parent</artifactId>
@@ -92,6 +103,23 @@
         <artifactId>activiti-cloud-starter-process-model</artifactId>
         <version>${activiti-cloud-process-model-service.version}</version>
       </dependency>
+      <dependency>
+        <groupId>net.javacrumbs.json-unit</groupId>
+        <artifactId>json-unit-fluent</artifactId>
+        <version>${json-unit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${commons-io.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-fileupload</groupId>
+        <artifactId>commons-fileupload</artifactId>
+        <version>${commons-fileupload.version}</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
 
