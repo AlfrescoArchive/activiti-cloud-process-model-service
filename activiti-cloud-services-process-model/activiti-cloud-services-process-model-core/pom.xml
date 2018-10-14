@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.activiti.cloud.process.model</groupId>
     <artifactId>activiti-cloud-services-process-model</artifactId>
-    <version>7.0.0-SNAPSHOT</version>
+    <version>7.0.18</version>
   </parent>
   <artifactId>activiti-cloud-services-process-model-core</artifactId>
   <name>Activiti Cloud Services :: Process Model Core</name>
