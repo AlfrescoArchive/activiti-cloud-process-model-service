@@ -5,12 +5,12 @@
   <parent>
       <groupId>org.activiti.cloud.modeling.build</groupId>
       <artifactId>activiti-cloud-modeling-parent</artifactId>
-      <version>7.0.1</version>
+      <version>7.0.0.Beta2</version>
     <relativePath/>
   </parent>
   <groupId>org.activiti.cloud.process.model</groupId>
   <artifactId>activiti-cloud-process-model-service-parent</artifactId>
-  <version>7.0.23</version>
+  <version>7.0.0.Beta2</version>
   <name>Activiti Cloud :: Process Model Service Parent</name>
   <packaging>pom</packaging>
   <url>http://activiti.org</url>
@@ -40,10 +40,10 @@
     </repository>
   </repositories>
   <properties>
-    <activiti-dependencies.version>7.0.48</activiti-dependencies.version>
-    <activiti-cloud-modeling-build.version>7.0.1</activiti-cloud-modeling-build.version>
-    <activiti-cloud-service-common.version>7.0.35</activiti-cloud-service-common.version>
-    <activiti-cloud-process-model-service.version>${project.version}</activiti-cloud-process-model-service.version>
+    <activiti-dependencies.version>7.0.0.Beta2</activiti-dependencies.version>
+    <activiti-cloud-modeling-build.version>7.0.0.Beta2</activiti-cloud-modeling-build.version>
+    <activiti-cloud-service-common.version>7.0.0.Beta2</activiti-cloud-service-common.version>
+    <activiti-cloud-process-model-service.version>7.0.0.Beta2</activiti-cloud-process-model-service.version>
     <json-unit.version>1.24.0</json-unit.version>
     <commons-io.version>2.6</commons-io.version>
     <commons-fileupload.version>1.3.3</commons-fileupload.version>
