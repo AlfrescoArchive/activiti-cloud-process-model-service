@@ -24,7 +24,7 @@ import org.activiti.cloud.services.process.model.core.version.VersionedEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.data.repository.core.RepositoryInformation;
 import org.springframework.data.repository.core.support.RepositoryFactorySupport;
 
@@ -82,7 +82,7 @@ public class ExtendedJpaRepositoryFactoryBean<R extends JpaRepository<T, K>, T, 
          * @return the repository implementation
          */
         @Override
-        protected SimpleJpaRepository getTargetRepository(final RepositoryInformation information,
+        protected JpaRepositoryImplementation getTargetRepository(final RepositoryInformation information,
                                                           final EntityManager entityManager) {
             if (isVersionedJpaRepository(information.getRepositoryInterface())) {
                 return getTargetVersionedJpaRepository(information.getRepositoryInterface(),
