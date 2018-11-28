@@ -4,8 +4,9 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.activiti.cloud.process.model</groupId>
-    <artifactId>activiti-cloud-process-model-service-parent</artifactId>
+    <artifactId>activiti-cloud-process-model-dependencies</artifactId>
     <version>7.0.0-SNAPSHOT</version>
+    <relativePath>../activiti-cloud-process-model-dependencies</relativePath>
   </parent>
   <artifactId>activiti-cloud-services-process-model</artifactId>
   <name>Activiti Cloud Services :: Process Model</name>
