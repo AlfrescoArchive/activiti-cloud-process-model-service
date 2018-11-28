@@ -7,3 +7,4 @@ github:
       useSinglePullRequest: true      
     - name: activiti-cloud-org-service
       branch: develop
+      useSinglePullRequest: true      
