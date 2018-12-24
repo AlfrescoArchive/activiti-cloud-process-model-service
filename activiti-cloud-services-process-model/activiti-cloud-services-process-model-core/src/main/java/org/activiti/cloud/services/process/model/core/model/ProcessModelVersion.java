@@ -53,6 +53,10 @@ public class ProcessModelVersion extends AuditableEntity<String> implements Vers
     @Column
     private String content;
 
+    @Lob
+    @Column
+    private String extensions;
+
     public VersionIdentifier getVersionIdentifier() {
         return versionIdentifier;
     }
@@ -85,6 +89,14 @@ public class ProcessModelVersion extends AuditableEntity<String> implements Vers
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getExtensions() {
+        return extensions;
+    }
+
+    public void setExtensions(String extensions) {
+        this.extensions = extensions;
     }
 
     public String getName() {
