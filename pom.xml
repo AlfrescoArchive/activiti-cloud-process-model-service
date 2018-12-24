@@ -10,7 +10,7 @@
   </parent>
   <groupId>org.activiti.cloud.process.model</groupId>
   <artifactId>activiti-cloud-process-model-service-parent</artifactId>
-  <version>7.0.0-SNAPSHOT</version>
+  <version>7.0.45</version>
   <name>Activiti Cloud :: Process Model Service Parent</name>
   <packaging>pom</packaging>
   <url>http://activiti.org</url>
