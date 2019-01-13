@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.activiti.cloud.process.model</groupId>
     <artifactId>activiti-cloud-process-model-service-parent</artifactId>
-    <version>7.0.0-SNAPSHOT</version>
+    <version>7.0.52</version>
   </parent>
   <artifactId>activiti-cloud-process-model-dependencies-tests</artifactId>
   <packaging>pom</packaging>
