@@ -21,9 +21,6 @@ pipeline {
           container('maven') {
             sh "mvn versions:set -DnewVersion=$PREVIEW_VERSION"
             sh "mvn install"
-            sh 'export VERSION=$PREVIEW_VERSION'
-            sh 'mvn clean deploy -DskipTests'
-
           }
 
         }
@@ -92,9 +89,6 @@ pipeline {
 
             //add updatebot configuration to push to downstream
             sh "updatebot push-version --kind maven org.activiti.cloud.process.model:activiti-cloud-process-model-dependencies \$(cat VERSION)"
-            //sh "updatebot update-loop"
-
-        //    sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
           }
         }
       }
